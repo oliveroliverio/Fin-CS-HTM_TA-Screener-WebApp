@@ -5,6 +5,11 @@ app = Flask(__name__)
 def helloWorld():
   return 'hello world'
 
-
-# be sure to run
-# export FLASK_ENV=development
+@app.route('/snapshot')
+def snapshot():
+  return {
+    'code': 'sucess'
+  }
+# To run:
+#   export FLASK_ENV=development
+#   flask run
