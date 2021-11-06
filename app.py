@@ -1,9 +1,10 @@
 from flask import Flask, render_template
+from patterns import patterns
 app = Flask(__name__)
 
 @app.route('/')
 def helloWorld():
-  return render_template('index.html')
+  return render_template('index.html', patterns)
 
 @app.route('/snapshot')
 def snapshot():
