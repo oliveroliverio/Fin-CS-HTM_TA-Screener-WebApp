@@ -1,11 +1,14 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from patterns import patterns
 import yfinance as yf
 
 app = Flask(__name__)
 
 @app.route('/')
-def helloWorld():
+def index():
+  pattern = request.args.get('pattern', None)
+  if pattern:
+    print(pattern)
   return render_template('index.html', patterns=patterns)
 
 @app.route('/snapshot')

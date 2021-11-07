@@ -1,11 +1,8 @@
 # Fin-CS-HTM_TA-Screener-Webapp
 
 Here's where I'll take notes on video.  Use other note apps sparingly (obsidian, evernote).  At least for coding projects.
-
 [source](https://www.youtube.com/watch?v=OhvQN_yIgCo&t=1019s)
-
-## Starting
-
+# Starting
 ## Adding templates to form in index.html
 ```html
   <form action="">
@@ -67,3 +64,22 @@ def snapshot():
   }
 ```
 - after downloading CSVs for each company, you then want to load each of these in a dataframe, then apply a TA-Lib candle stick pattern function to the DF, then see how it flags the last row (most recent), then we'll know if that pattern has appeared as of the close on that date.
+
+# Working on main function
+- go to `localhost:5000`
+- click on dropdown, then scan.  What's happening is it's sent as a **query parameter**, which we can capture into a variable in flask.  Here we'll get some info about the **request**
+- **request** contains info about the current request
+  - ip address it came from
+  - **post form variables**
+  - here we'll get all the arguments: `pattern = request.args.get('pattern', None)` (which comes from the URL section in between `?` and `=`).  If not present, give it "none")
+
+```python
+@app.route('/')
+def index():
+  pattern = request.args.get('pattern', None)
+  if pattern:
+    print(pattern)
+  return render_template('index.html', patterns=patterns)
+```
+- now run this by going to `localhost:5000`, click on dropdown, choose a pattern, click scan, note the console printing (note: remember to run in debug mode to see print console: `export FLASK_ENV=devlopment`)
+
