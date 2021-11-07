@@ -16,12 +16,13 @@
 
   <form action="">
     <select name="pattern">
-      <option value="doji">doji</option>
-      <option value="engulfing">engulfing</option>
-      <option value="3 black crows">3 black crows</option>
+      {% for pattern in patterns %}
+        <option value="{{pattern}}">{{patterns[pattern]}}</option>
+      {% endfor %}
     </select>
+
     <input type="submit" value="scan">
   </form>
-  {{patterns}}
+  <!-- {{patterns}} -->
 </body>
 </html>
