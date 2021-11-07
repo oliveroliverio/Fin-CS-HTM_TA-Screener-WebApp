@@ -50,3 +50,20 @@ def snapshot():
     'code': 'success'
   }
 ```
+- now get each of these symbols from yf to get data given a start and end date
+- then output data to it's own csv file under datasets directory
+
+```python
+@app.route('/snapshot')
+def snapshot():
+  with open('datasets/companies.csv') as f:
+    companies = f.read().splitlines()
+    for company in companies:
+      symbol = company.split(',')[0]
+      df = yf.download(symbol, start="2021-01-01", end="2021-10-01")
+      df.to_csv('datasets/daily/{}.csv'.format(symbol))
+  return {
+    'code': 'success'
+  }
+
+```
