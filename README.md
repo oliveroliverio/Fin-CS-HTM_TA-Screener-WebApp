@@ -83,3 +83,19 @@ def index():
 ```
 - now run this by going to `localhost:5000`, click on dropdown, choose a pattern, click scan, note the console printing (note: remember to run in debug mode to see print console: `export FLASK_ENV=devlopment`)
 
+# Apply function to all daily datasets in directory, need pandas
+- goal: loop through all files in directory
+- need: python package `os`
+
+```python
+@app.route('/')
+def index():
+  pattern = request.args.get('pattern', None)
+  if pattern:
+    datafiles = os.listdir('datasets/daily')
+    for filename in datafiles:
+      df = pd.read_csv('datasets/daily/{}'.format(filename))
+      print(df)
+  return render_template('index.html', patterns=patterns)
+```
+- to run, go to `localhost:5000` click drop down arrow for pattern, click scan to see if any of the CSVs have this pattern.  View the DFs in the console

@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request
 from patterns import patterns
 import yfinance as yf
+import os
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -8,7 +10,10 @@ app = Flask(__name__)
 def index():
   pattern = request.args.get('pattern', None)
   if pattern:
-    print(pattern)
+    datafiles = os.listdir('datasets/daily')
+    for filename in datafiles:
+      df = pd.read_csv('datasets/daily/{}'.format(filename))
+      print(df)
   return render_template('index.html', patterns=patterns)
 
 @app.route('/snapshot')
