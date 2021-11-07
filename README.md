@@ -51,7 +51,7 @@ def snapshot():
   }
 ```
 - now get each of these symbols from yf to get data given a start and end date
-- then output data to it's own csv file under datasets directory
+- then output data to it's own csv file under datasets directory (note: need to manually create the `daily` directory)
 
 ```python
 @app.route('/snapshot')
