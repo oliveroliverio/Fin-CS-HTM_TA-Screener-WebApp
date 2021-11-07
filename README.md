@@ -51,7 +51,7 @@ def snapshot():
   }
 ```
 - now get each of these symbols from yf to get data given a start and end date
-- then output data to it's own csv file under datasets directory
+- then output data to it's own csv file under datasets directory (note: need to manually create the `daily` directory)
 
 ```python
 @app.route('/snapshot')
@@ -65,5 +65,5 @@ def snapshot():
   return {
     'code': 'success'
   }
-
 ```
+- after downloading CSVs for each company, you then want to load each of these in a dataframe, then apply a TA-Lib candle stick pattern function to the DF, then see how it flags the last row (most recent), then we'll know if that pattern has appeared as of the close on that date.
