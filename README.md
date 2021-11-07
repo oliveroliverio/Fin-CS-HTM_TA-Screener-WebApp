@@ -36,3 +36,17 @@ def snapshot():
     'code': 'success'
   }
 ```
+- modified script to get just the symbols
+
+```python
+@app.route('/snapshot')
+def snapshot():
+  with open('datasets/companies.csv') as f:
+    companies = f.read().splitlines()
+    for company in companies:
+      symbol = company.split(',')[0]
+      print(symbol)
+  return {
+    'code': 'success'
+  }
+```
