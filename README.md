@@ -99,3 +99,5 @@ def index():
   return render_template('index.html', patterns=patterns)
 ```
 - to run, go to `localhost:5000` click drop down arrow for pattern, click scan to see if any of the CSVs have this pattern.  View the DFs in the console
+
+- now we want to import TA-Lib
