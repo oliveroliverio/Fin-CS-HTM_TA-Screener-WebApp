@@ -14,12 +14,12 @@ def index():
     datafiles = os.listdir('datasets/daily')
     for filename in datafiles:
       df = pd.read_csv('datasets/daily/{}'.format(filename))
-      print(df)
-      # try:
-      #   result = talib.CDLENGULFING(df['Open'], df['High'], df['Low'], df['Close'])
-      #   print(result)
-      # except:
-      #   pass
+      # print(df)
+      try:
+        result = talib.CDLENGULFING(df['Open'], df['High'], df['Low'], df['Close'])
+        print(result)
+      except:
+        pass
   return render_template('index.html', patterns=patterns)
 
 @app.route('/snapshot')
